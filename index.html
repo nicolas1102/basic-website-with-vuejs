@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todos</title>
+    <link rel="stylesheet" href="styles/main.css"/>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="scripts/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Todo Management</h1>
+      <p>Manage your (daily) todos with ease!</p>
+    </header>
+    <main id="todos-app">
+
+      <!-- variables (Data Binding) -->
+      <!-- <h2>{{ newTodo }}</h2> -->
+
+      <section id="todo-management">
+        <!-- @submit -> the event we wanna listen; eventlistener -->
+        <form @submit="saveTodo">
+          <label for="text">Todo text</label>
+          <!-- 'v-model' connect the input to a variable, in this case 'enteredText'. So, vue listen every change on this element an update the value of the variable; (Two way binding) --> 
+          <input type="text" id="text" v-model="enteredTodoText" required />
+          <button>Save</button>
+        </form>
+      </section>
+      <section id="todos">
+        <!-- vue directive; If conditionaly -->
+        <p v-if="todos.length === 0">New todos added yet - maybe start adding some?</p>
+        <ul v-else id="todos-list">
+          <!-- vue directive atribute; For conditionaly -->
+          <li v-for="todo in todos">
+            <p> {{ todo.text }} </p>
+            <div>
+              <!-- click eventlistener; we set a function when we click the button and we pass a variable of the todo -->
+              <button @click="startEditTodo(todo.id)">Edit</button>
+              <button @click="deleteTodo(todo.id)">Delete</button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
