@@ -4,14 +4,121 @@
 
 html {
   font-family: sans-serif;
+  scroll-behavior: smooth;
+
+  /* css variables */
+  --color-gray-0: rgb(243, 243, 243);
+  --color-gray-50: rgb(220, 220, 220);
+  --color-gray-100: rgb(180, 180, 180);
+  --color-gray-200: rgb(140, 140, 140);
+  --color-gray-300: rgb(110, 110, 110);
+  --color-gray-400: rgb(90, 95, 90);
+  --color-gray-500: rgb(74, 74, 74);
+  --color-gray-600: rgb(54, 54, 54);
+  --color-gray-700: rgb(33, 33, 33);
+  --color-gray-800: rgb(17, 17, 17);
+
+  --color-primary-100: rgb(221, 122, 122);
+  --color-primary-400: rgb(185, 36, 36);
+  --color-primary-500: rgb(154, 13, 13);
+
+  --color-secundary-100: rgb(203, 198, 96);
+  --color-secundary-300: rgb(203, 198, 96);
+
+  --color-primary-blur-200: rgba(210, 188, 254, 0.5);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  --border-radius-small: 4px;
+  --border-radius-medium: 6px;
+  --border-radius-large: 8px;
+
+  --backdrop-filter-1: blur(8.5vmax);
 }
 
 body {
   margin: 0;
-  background-color: rgb(35, 19, 53);
   color: white;
   text-align: center;
+  background-color: rgba(35, 19, 53, 0.945);
+  color: var(--color-gray-50);
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
+/* THE BLOB */
+
+@keyframes rotate {
+    from {
+        rotate: 0deg;
+    }
+
+    0% {
+        scale: 0.8 0.8;
+    }
+
+    25% {
+        scale: 0.6 0.8;
+    }
+
+    50% {
+        scale: 0.8 0.6;
+    }
+
+    75% {
+        scale: 1 1;
+    }
+
+    100% {
+        scale: 0.8 0.8;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
+
+#blob-container {
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    z-index: -4;
+}
+
+#blob {
+    background-color: black;
+    height: 25vmax;
+    aspect-ratio: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: calc(-50% + 2.0rem) calc(-50% - 2.0rem);
+    border-radius: 50%;
+    background: linear-gradient(to right, var(--color-secundary-100), var(--color-primary-400));
+    animation: rotate 12s infinite;
+    opacity: 0.8;
+    z-index: -3;
+    box-sizing: border-box;
+}
+
+#blur {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: -2;
+    backdrop-filter: var(--backdrop-filter-1);
+}
+
+/* THE END OF THE BLOB */
 
 h1 {
   font-size: 3rem;
@@ -63,7 +170,9 @@ input:focus {
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 6px;
-  background-color: rgb(29, 6, 56);
+  background-color: rgba(29, 6, 56, 0.482);
+  backdrop-filter: blur(var(--backdrop-filter-0));
+  border: 2px solid var(--color-gray-50);
 }
 
 #todos {
@@ -81,7 +190,9 @@ input:focus {
 #todos-list li {
   margin: 1rem 0;
   padding: 1.5rem;
-  background-color: rgb(69, 18, 136);
+  background-color: rgba(29, 6, 56, 0.482);
+  backdrop-filter: blur(var(--backdrop-filter-0));
+  border: 2px solid var(--color-gray-50);
   border-radius: 6px;
   font-size: 1.5rem;
   display: flex;
